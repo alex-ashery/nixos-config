@@ -10,12 +10,8 @@ pushd $HOME
 log "Running nix install"
 curl -L https://nixos.org/nix/install | sh
 
-log "Adding home-manager channel"
-sudo nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-sudo nix-channel --update
+log "Pulling install script"
+curl -L https://raw.githubusercontent.com/alex-ashery/dotfilesV2/main/scripts/install.sh > install.sh
 
-log "Installing home-manager"
-nix-shell '<home-manager>' -A install
-
-log "Cleaning Up"
+log "Cleaning up. Please log out, log back in again, and then run install.sh."
 popd
