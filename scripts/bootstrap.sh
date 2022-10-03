@@ -8,7 +8,7 @@ log "Starting bootstrap"
 pushd $HOME
 
 log "Running nix install"
-curl -L https://nixos.org/nix/install | sh
+sh <(curl -L https://nixos.org/nix/install --daemon)
 
 log "Pulling install script"
 curl -L https://raw.githubusercontent.com/alex-ashery/dotfilesV2/main/scripts/install.sh > install.sh
