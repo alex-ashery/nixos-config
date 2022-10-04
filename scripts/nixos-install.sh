@@ -1,18 +1,18 @@
 #!/bin/bash
 
-DOTFILES=$HOME/dotfiles
+CONFDIR=/etc/nixos
 
+sudo cp -R $CONFDIR $CONFDIR.old
 sudo nix-env -i git
-git clone https://github.com/alex-ashery/dotfilesV2.git $DOTFILES
+git clone https://github.com/alex-ashery/dotfilesV2.git $CONFDIR
 sudo nix-env -e git
 
-sudo cp $DOTFILES/configuration.nix /etc/nixos/configuration.nix
-HW_CONF=$DOTFILES/machines/$1.nix
+HW_CONF=$CONFDIR/machines/$1.nix
 if [ ! -f $HW_CONF ]; then
         echo No machine $1 found
         exit 1
 fi
-sudo cp $HW_CONF /etc/nixos/hardware-configuration.nix
+sudo cp $HW_CONF $CONFDIR/hardware-configuration.nix
 sudo nixos-rebuild switch
 
 sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
