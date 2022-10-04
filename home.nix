@@ -31,9 +31,10 @@
         number = true;
         relativenumber = true;
         expandtab = true;
+        smartcase = true;
       };
 
-      extraConfig = builtins.readFile ~/dotfiles/vim/.vimrc;
+      extraConfig = builtins.readFile ~/dotfiles/vim/vimrc;
     };
     git = {
       enable = true;
