@@ -18,5 +18,5 @@ sudo nixos-rebuild switch
 sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
 sudo nix-channel --update
 nix-shell <home-manager> -A install
-ln -f -s $HOME/dotfiles/home.nix $HOME/.config/nixpkgs/home.nix
+ln -f -s $CONFDIR/home.nix $HOME/.config/nixpkgs/home.nix
 home-manager switch
