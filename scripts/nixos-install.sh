@@ -7,7 +7,7 @@ git clone https://github.com/alex-ashery/dotfilesV2.git $DOTFILES
 sudo nix-env -e git
 
 sudo cp $DOTFILES/configuration.nix /etc/nixos/configuration.nix
-HW_CONF=$DOTFILES/machines/$1
+HW_CONF=$DOTFILES/machines/$1.nix
 if [ ! -f $HW_CONF ]; then
         echo No machine $1 found
         exit 1
