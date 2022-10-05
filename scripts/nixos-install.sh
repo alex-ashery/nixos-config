@@ -15,7 +15,7 @@ if [ ! -f $HW_CONF ]; then
         echo No machine $1 found
         exit 1
 fi
-sudo cp $HW_CONF $CONFDIR/hardware-configuration.nix
+sudo ln -f -s $HW_CONF $CONFDIR/hardware-configuration.nix
 sudo nixos-rebuild switch
 
 sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
