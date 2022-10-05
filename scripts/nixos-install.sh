@@ -7,7 +7,7 @@ if [ -d $CONFDIR ]; then
 	sudo rm -rf $CONFDIR
 fi
 sudo nix-env -i git
-git clone https://github.com/alex-ashery/dotfilesV2.git $CONFDIR
+sudo git clone https://github.com/alex-ashery/dotfilesV2.git $CONFDIR
 sudo nix-env -e git
 
 HW_CONF=$CONFDIR/machines/$1.nix
