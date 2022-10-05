@@ -27,5 +27,12 @@ if [ ! -d $USER_CONF ]; then
         echo No user $2 found
         exit 1
 fi
-ln -f -s $USER_CONF/home.nix $HOME/.config/nixpkgs/home.nix
+
+HOME_CONF=$HOME/config
+if [ -d $HOME_CONF ]; then
+        cp -R $HOME_CONF $HOME_CONF.old
+fi
+cp -R $USER_CONF $HOME_CONF
+ln -f -s $HOME_CONF/home.nix $HOME/.config/nixpkgs/home.nix
+
 home-manager switch
