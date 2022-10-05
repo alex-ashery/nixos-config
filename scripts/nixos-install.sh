@@ -17,6 +17,12 @@ sudo nixos-rebuild switch
 
 sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
 sudo nix-channel --update
-nix-shell <home-manager> -A install
-ln -f -s $CONFDIR/home.nix $HOME/.config/nixpkgs/home.nix
+nix-shell '<home-manager>' -A install
+
+USER_CONF=$CONFDIR/users/$2
+if [ ! -d $USER_CONF ]; then
+        echo No user $2 found
+        exit 1
+fi
+ln -f -s $USER_CONF/home.nix $HOME/.config/nixpkgs/home.nix
 home-manager switch

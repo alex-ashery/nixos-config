@@ -34,7 +34,7 @@
         smartcase = true;
       };
 
-      extraConfig = builtins.readFile ~/dotfiles/vim/vimrc;
+      extraConfig = builtins.readFile /etc/nixos/users/aashery/vim/vimrc;
     };
     git = {
       enable = true;
