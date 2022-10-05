@@ -2,7 +2,10 @@
 
 CONFDIR=/etc/nixos
 
-sudo cp -R $CONFDIR $CONFDIR.old
+if [ -d $CONFDIR ]; then
+	sudo cp -R $CONFDIR $CONFDIR.old
+	rm -rf $CONFDIR
+fi
 sudo nix-env -i git
 git clone https://github.com/alex-ashery/dotfilesV2.git $CONFDIR
 sudo nix-env -e git
