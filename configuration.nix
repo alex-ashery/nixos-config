@@ -51,7 +51,7 @@
   users.users.aashery = {
     isNormalUser = true;
     description = "Alex";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" ];
     packages = with pkgs; [];
   };
 
@@ -63,4 +63,10 @@
   ];
 
   system.stateVersion = "22.05";
+
+  sound.enable = true;
+  sound.extraConfig = ''
+    defaults.pcm.!card "S3"
+    defaults.ctl.!card "S3"
+  '';
 }
