@@ -15,6 +15,9 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "22.05";
+  home.sessionVariables = {
+    TERMINAL = "kitty";
+  };
 
   # Let Home Manager install and manage itself.
   programs = {
@@ -41,5 +44,6 @@
       userName = "alex-ashery";
       userEmail = "alexander.ashery@gmail.com";
     };
+    kitty.enable = true;
   };
 }

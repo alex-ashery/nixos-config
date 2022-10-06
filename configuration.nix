@@ -25,10 +25,26 @@
     xkbVariant = "";
 
     displayManager = {
-      sddm.enable = true;
-      defaultSession = "none+awesome";
+      lightdm.greeters.mini = {
+          enable = true;
+          user = "aashery";
+          extraConfig = ''
+            [greeter]
+            show-password-label = false
+          '';
+      };
+      defaultSession = "none+home-manager";
+      session = [
+        {
+          manage = "window";
+          name = "home-manager";
+          start = ''
+            ${pkgs.runtimeShell} $HOME/config/.hm-xsession &
+            waitPID=$!
+          '';
+        }
+      ];
     };
-
     windowManager.awesome.enable = true;
   };
 
