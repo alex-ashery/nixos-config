@@ -6,13 +6,19 @@
       ./hardware-configuration.nix
     ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  # Bootloader
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+  };
 
-  networking.hostName = "aashery-desktop";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "aashery-desktop";
+    networkmanager.enable = true;
+  };
 
   services.xserver = {
     enable = true;
@@ -55,9 +61,11 @@
     v4l-utils
   ];
 
-  sound.enable = true;
-  sound.extraConfig = ''
-    defaults.pcm.!card "S3"
-    defaults.ctl.!card "S3"
-  '';
+  sound = {
+    enable = true;
+    extraConfig = ''
+      defaults.pcm.!card "S3"
+      defaults.ctl.!card "S3"
+    '';
+  };
 }
