@@ -58,6 +58,8 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    usbutils
+    v4l-utils
   #  vim
   #  wget
   ];

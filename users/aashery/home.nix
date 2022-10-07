@@ -1,25 +1,19 @@
 { config, pkgs, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "aashery";
-  home.homeDirectory = "/home/aashery";
-
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "22.05";
-  home.sessionVariables = {
-    TERMINAL = "kitty";
+  home = {
+    username = "aashery";
+    homeDirectory = "/home/aashery";
+    stateVersion = "22.05";
+    packages = with pkgs; [
+      libnotify
+      vlc
+    ];
+    sessionVariables = {
+      EDITOR = "vim";
+    };
   };
 
-  # Let Home Manager install and manage itself.
   programs = {
     home-manager.enable = true;
     vim = {
@@ -44,7 +38,17 @@
       userName = "alex-ashery";
       userEmail = "alexander.ashery@gmail.com";
     };
-    kitty.enable = true;
+    kitty = {
+      enable = true;
+      keybindings = {
+        "ctrl+shift+j" = "previous_tab";
+        "ctrl+shift+k" = "next_tab";
+        "ctrl+shift+x" = "close_tab";
+        "ctrl+shift+n" = "set_tab_title";
+        "ctrl+<" = "move_tab_backward";
+        "ctrl+>" = "move_tab_foreward";
+      };
+    };
     qutebrowser = {
       enable = true;
       quickmarks = {
@@ -65,6 +69,8 @@
           u = "scroll-page 0 -0.5";
           x = "tab-close";
           yf = "hint links yank";
+          "<" = "tab-move -";
+          ">" = "tab-move +";
         };
       };
       settings = {
