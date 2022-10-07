@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports =
@@ -12,12 +12,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   networking.hostName = "aashery-desktop";
-
   networking.networkmanager.enable = true;
-
-  time.timeZone = "America/Los_Angeles";
-
-  i18n.defaultLocale = "en_US.utf8";
 
   services.xserver = {
     enable = true;
@@ -55,16 +50,10 @@
     packages = with pkgs; [];
   };
 
-  nixpkgs.config.allowUnfree = true;
-
   environment.systemPackages = with pkgs; [
     usbutils
     v4l-utils
-  #  vim
-  #  wget
   ];
-
-  system.stateVersion = "22.05";
 
   sound.enable = true;
   sound.extraConfig = ''
