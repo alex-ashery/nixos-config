@@ -40,7 +40,7 @@
           manage = "window";
           name = "home-manager";
           start = ''
-            ${pkgs.runtimeShell} $HOME/config/.hm-xsession &
+            ${pkgs.runtimeShell} $HOME/.hm-xsession &
             waitPID=$!
           '';
         }
@@ -59,6 +59,7 @@
   environment.systemPackages = with pkgs; [
     usbutils
     v4l-utils
+    home-manager
   ];
 
   sound = {
