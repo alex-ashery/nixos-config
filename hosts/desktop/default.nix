@@ -62,11 +62,12 @@
     home-manager
   ];
 
-  sound = {
+  security.rtkit.enable = true;
+  sound.enable = true;
+  services.pipewire = {
     enable = true;
-    extraConfig = ''
-      defaults.pcm.!card "S3"
-      defaults.ctl.!card "S3"
-    '';
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
   };
 }
