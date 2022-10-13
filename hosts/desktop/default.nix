@@ -20,33 +20,39 @@
     networkmanager.enable = true;
   };
 
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    xkbVariant = "";
-
-    displayManager = {
-      lightdm.greeters.mini = {
-          enable = true;
-          user = "aashery";
-          extraConfig = ''
-            [greeter]
-            show-password-label = false
-          '';
+  services = {
+    xserver = {
+      enable = true;
+      layout = "us";
+      xkbVariant = "";
+      displayManager = {
+        lightdm.greeters.mini = {
+            enable = true;
+            user = "aashery";
+            extraConfig = ''
+              [greeter]
+              show-password-label = false
+            '';
+        };
+        defaultSession = "none+home-manager";
+        session = [
+          {
+            manage = "window";
+            name = "home-manager";
+            start = ''
+              ${pkgs.runtimeShell} $HOME/.hm-xsession &
+              waitPID=$!
+            '';
+          }
+        ];
       };
-      defaultSession = "none+home-manager";
-      session = [
-        {
-          manage = "window";
-          name = "home-manager";
-          start = ''
-            ${pkgs.runtimeShell} $HOME/.hm-xsession &
-            waitPID=$!
-          '';
-        }
-      ];
     };
-    windowManager.awesome.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
   };
 
   users.users.aashery = {
@@ -64,10 +70,4 @@
 
   security.rtkit.enable = true;
   sound.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 }
