@@ -53,6 +53,7 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+    pcscd.enable = true;
   };
 
   users.users.aashery = {
@@ -67,6 +68,11 @@
     v4l-utils
     home-manager
   ];
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   security.rtkit.enable = true;
   sound.enable = true;
