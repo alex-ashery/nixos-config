@@ -11,7 +11,7 @@ You go through some prompts that request basic metadata. Set up a passphrase. Wh
 pass init email.address@domain.com
 ```
 
-where the email is the one that was set during gpg key generation. To enable git password storage, create an entry at `git/credential`. It should follow the format:
+where the email is the one that was set during gpg key generation. To enable git password storage, create an entry at `git-creds`. It should follow the format:
 
 ```
 username=usernamegoeshere

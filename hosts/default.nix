@@ -17,4 +17,13 @@ in
       ./configuration.nix
     ];
   };
+
+  laptop = lib.nixosSystem {
+    inherit system;
+    specialArgs = { inherit inputs; };
+    modules = [
+      ./laptop
+      ./configuration.nix
+    ];
+  };
 }
